@@ -4,6 +4,7 @@ fetch("http://kea-alt-del.dk/t7/api/products?start=100")
 
 const template = document.querySelector("#product__card__template").content;
 const container = document.querySelector(".products");
+const discountBox = document.querySelector(".discount-box");
 
 function showData(data) {
   console.log(data);
@@ -20,13 +21,17 @@ function showData(data) {
     }
     if (item.discount) {
       clone.querySelector(".product__card__price").classList.add("discount");
-      clone.querySelector(".product__card__content").classList.add("discount-box");
-      let newPrice = item.price - item.price * (item.discount / 100);
+      clone.querySelector(".product__card__price").classList.add("line-through");
+      let newPrice = (item.price - item.price * (item.discount / 100)).toFixed(0);
       let newPriceSpan = document.createElement("span");
       newPriceSpan.innerHTML = newPrice + " DKK";
       newPriceSpan.classList.add("new-price");
-      newPriceSpan.classList.remove("discount");
-      clone.querySelector(".product__card__price").appendChild(newPriceSpan);
+      clone.querySelector(".flex--container").appendChild(newPriceSpan);
+      let discountPercentage = item.discount;
+      let discountPercentageSpan = document.createElement("span");
+      discountPercentageSpan.innerHTML = discountPercentage + "% OFF";
+      discountPercentageSpan.classList.add("discount-box");
+      clone.querySelector(".flex--container").appendChild(discountPercentageSpan);
     }
     container.appendChild(clone);
   });
