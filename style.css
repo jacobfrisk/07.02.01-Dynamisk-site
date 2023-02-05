@@ -193,44 +193,42 @@ h2 {
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  row-gap: 2rem;
+  row-gap: 5rem;
+  column-gap: 5rem;
   place-items: center;
+  align-items: start;
+}
+
+.flex--container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .product__card {
-  width: fit-content;
-  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 2rem;
   border-radius: 0.5rem;
-  border: 1px solid grey;
-  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
-  /* background-color: white; */
+}
+
+.product__card__info {
   display: flex;
   flex-direction: column;
-  min-height: 400px;
-  position: relative;
 }
 
-.product__card img {
-  height: 400px;
-  width: 400px;
-  object-fit: contain;
-  margin-bottom: 2rem;
-  margin-top: auto;
-}
-
-.product__card h3 {
+.product__card__info__title {
+  margin-block: 1rem;
   font-family: "body";
-}
-
-.product__card__content {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  text-transform: uppercase;
 }
 
 .product__card__buy__button {
   box-shadow: inset 0 0 0 1px black;
   padding: 0.5rem 1rem;
   border-radius: 0.2rem;
+  text-align: center;
+  width: fit-content;
+  margin-top: 1rem;
 }
 
 .product__card__buy__button:hover {
@@ -239,51 +237,28 @@ h2 {
   transition: 150ms ease;
 }
 
-.product__card__purchase {
+.sold-out {
+  opacity: 0.5;
+  z-index: 100;
+}
+
+.product__card__price {
   display: flex;
   flex-direction: column;
 }
 
-.product__card__buy__button {
-  margin-top: auto;
-}
-
-.product__card__price,
-.product__card__price__discount {
-  text-align: end;
-}
-
-.sold--out {
-  pointer-events: none;
-}
-
-.product__card__price__discount {
+.new-price {
   color: red;
 }
 
-div.product__card:nth-child(2) > div:nth-child(2) > div:nth-child(2) > p:nth-child(1) {
-  text-decoration-line: line-through;
-  text-decoration-thickness: 1.4px;
-}
-
-.sold-out-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.2rem;
-}
-
-.sold-out-overlay span {
+.discount-box {
+  background-color: hsl(0, 100%, 48%);
+  width: fit-content;
   color: white;
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: inline-block;
+  font-size: 1.5rem;
 }
 
 .product__view {
@@ -334,8 +309,7 @@ option[value=""][disabled] {
   transition: 150ms ease;
 }
 
-.product__view__price {
-  color: red;
+#product__view__price {
   display: flex;
   gap: 1rem;
   font-size: 1.5rem;
@@ -349,4 +323,5 @@ option[value=""][disabled] {
 
 .product__view__brand {
   font-family: "body";
+  text-transform: uppercase;
 }
