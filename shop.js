@@ -1,22 +1,38 @@
-const urlParams = new URLSearchParams(window.location.search);
-const category = urlParams.get("category");
+fetch("http://kea-alt-del.dk/t7/api/categories")
+  .then((res) => res.json())
+  .then(showCategories);
 
-fetch(`http://kea-alt-del.dk/t7/api/products?category=${category}`)
+const categoryTemplate = document.querySelector("#category-button").content;
+const categoryContainer = document.querySelector(".category");
+
+function showCategories(kategorier) {
+  kategorier.forEach((category) => {
+    console.log(kategorier);
+    const clone = categoryTemplate.cloneNode(true);
+    clone.querySelector("a").textContent = category.category;
+    categoryContainer.appendChild(clone);
+    clone.querySelector("a").addEventListener("click", function () {
+      if (clone.querySelector("a").textContent === category.category) {
+        fetch(`http://kea-alt-del.dk/t7/api/products?category=${category.category}`)
+          .then((res) => res.json())
+          .then(showData);
+      }
+    });
+  });
+}
+
+fetch("http://kea-alt-del.dk/t7/api/products")
   .then((res) => res.json())
   .then(showData);
 
-fetch("https://kea-alt-del.dk/t7/api/products")
-  .then((res) => res.json())
-  .then(showData);
-
-const template = document.querySelector("#product__card__template").content;
-const container = document.querySelector(".products");
-const discountBox = document.querySelector(".discount-box");
+const productTemplate = document.querySelector("#product__card__template").content;
+const productContainer = document.querySelector(".products");
 
 function showData(data) {
-  console.log(data);
+  //   console.log(data);
+  productContainer.innerHTML = "";
   data.forEach((item) => {
-    const clone = template.cloneNode(true);
+    const clone = productTemplate.cloneNode(true);
     clone.querySelector("img").src = `https://kea-alt-del.dk/t7/images/webp/640/${item.id}.webp`;
     clone.querySelector(".product__card__info__brand").textContent = "Brand | " + item.brandname;
     clone.querySelector(".product__card__info__title").textContent = item.productdisplayname;
