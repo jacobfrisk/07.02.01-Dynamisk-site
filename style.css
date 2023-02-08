@@ -292,7 +292,7 @@ h1 {
 }
 
 .product__view img {
-  max-width: 600px;
+  width: 600px;
 }
 
 select {
@@ -355,6 +355,7 @@ option[value=""][disabled] {
 .front-page img {
   height: 500px;
   width: auto;
+  margin-top: 2rem;
 }
 
 .front-page-content > * {
@@ -370,22 +371,31 @@ option[value=""][disabled] {
   border-bottom: 2px solid var(--text-clr);
 }
 
-@media (min-width: 400px) {
+footer {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+@media (min-width: 1000px) {
   .product__view__card {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 3rem;
   }
-}
 
-footer {
-  margin-top: 5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+  }
 }
 
 .footer-link {
   text-decoration: underline;
+}
+
+footer > * {
+  margin-top: 2rem;
 }

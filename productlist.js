@@ -1,11 +1,12 @@
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get("category");
 
-fetch(`http://kea-alt-del.dk/t7/api/products?category=${category}`)
-  .then((res) => res.json())
-  .then(showData);
+let allProducts = "https://kea-alt-del.dk/t7/api/products";
+if (category) {
+  allProducts = `https://kea-alt-del.dk/t7/api/products?category=${category}`;
+}
 
-fetch("https://kea-alt-del.dk/t7/api/products")
+fetch(allProducts)
   .then((res) => res.json())
   .then(showData);
 
