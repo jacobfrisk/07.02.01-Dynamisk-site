@@ -253,7 +253,6 @@ h1 {
 
 .sold-out {
   opacity: 0.5;
-  z-index: 100;
   pointer-events: none;
 }
 
@@ -372,7 +371,7 @@ option[value=""][disabled] {
 }
 
 footer {
-  margin-top: 5rem;
+  margin-top: 1rem;
   text-align: center;
 }
 

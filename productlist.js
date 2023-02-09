@@ -1,7 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get("category");
+const url = `http://kea-alt-del.dk/t7/api/products/${category}`;
 
-let allProducts = "https://kea-alt-del.dk/t7/api/products";
+allProducts = "https://kea-alt-del.dk/t7/api/products";
 if (category) {
   allProducts = `https://kea-alt-del.dk/t7/api/products?category=${category}`;
 }
@@ -23,6 +24,7 @@ function showData(data) {
     clone.querySelector(".product__card__info__title").textContent = item.productdisplayname;
     clone.querySelector(".product__card__info__category").textContent = "Category | " + item.category;
     clone.querySelector(".product__card__price").textContent = item.price + " DKK";
+    clone.querySelector("a").href = "product.html?id=" + item.id;
     if (item.soldout) {
       clone.querySelector(".product__card__buy__button").classList.add("sold-out");
       clone.querySelector(".product__card__buy__button").innerHTML = "SOLD OUT";
@@ -41,6 +43,7 @@ function showData(data) {
       discountPercentageSpan.classList.add("discount-box");
       clone.querySelector(".flex--container").appendChild(discountPercentageSpan);
     }
+
     container.appendChild(clone);
   });
 }

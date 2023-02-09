@@ -1,13 +1,11 @@
-const endpoint = "http://kea-alt-del.dk/t7/api/products/1532";
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
+const url = `http://kea-alt-del.dk/t7/api/products/${id}`;
+const imagePath = `https://kea-alt-del.dk/t7/images/webp/640/${id}.webp`;
 
-const productid = 1532;
-const imagePath = `https://kea-alt-del.dk/t7/images/webp/640/${productid}.webp`;
-
-function getData() {
-  fetch(endpoint)
-    .then((res) => res.json())
-    .then(showProduct);
-}
+fetch(url)
+  .then((res) => res.json())
+  .then(showProduct);
 
 function showProduct(product) {
   console.log(product);
