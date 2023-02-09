@@ -10,12 +10,12 @@
 /* Fonts */
 @font-face {
   font-family: "heading";
-  src: url(/fonts/librebaskerville-bold.woff2);
+  src: url(fonts/librebaskerville-bold.woff2);
 }
 
 @font-face {
   font-family: "body";
-  src: url(/fonts/calibre-regular.woff2);
+  src: url(fonts/calibre-regular.woff2);
 }
 
 /* CSS RESET */
